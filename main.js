@@ -1,19 +1,18 @@
 import express from 'express'
 const app = express()
 import mongoose from 'mongoose'
+import dotenv from 'dotenv'
 import studentrouter from './routes/student_routes.js'
+import connect_db from './config/database.js'
+
 
 
 //middleware
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
+dotenv.config()
 app.use(studentrouter)
-
-
-//db connections
-mongoose.connect('mongodb://127.0.0.1:27017/learn_api')
-.then(()=>{console.log("database connected")})
-.catch(err =>{console.log(err)})
+connect_db()
 
 //routes
 app.get('/',(req,res)=>{
@@ -21,6 +20,6 @@ app.get('/',(req,res)=>{
 })
 
 
-
+const PORT = process.env.PORT
 //server connection
-app.listen(7000, ()=>{console.log("SERVER RUN ON PORT 6000")})
+app.listen(PORT, ()=>{console.log(`SERVER RUN ON PORT ${PORT}`)})

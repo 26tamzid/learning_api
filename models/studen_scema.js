@@ -22,6 +22,9 @@ const studentScema = new mongoose.Schema({
         type: String,
         require: true,
         enum:['male','female'] 
+    },
+    Profile_pic:{
+        type: String
     }
 })
 

@@ -14,7 +14,7 @@ dotenv.config()
 app.use(studentrouter)
 connect_db()
 
-//routes
+// main route
 app.get('/',(req,res)=>{
     res.send('home page is open')
 })
